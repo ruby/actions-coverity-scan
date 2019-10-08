@@ -35,7 +35,9 @@ jobs:
         run: ./configure
 
       - name: Build with cov-build
-        run: cov-build --dir cov-int make
+        run: |
+          export PATH=`pwd`/cov-analysis-linux64/bin:$PATH
+          cov-build --dir cov-int make
 
       - name: Submit the result to Coverity Scan
         run: |
