@@ -11,6 +11,14 @@ jobs:
   latest:
     runs-on: ubuntu-latest
     steps:
+      - name: Install libraries
+        run: |
+          set -x
+          sudo sed /etc/apt/sources.list -e "s/^# deb-src/deb-src/g" -i
+          sudo apt-get update
+          sudo apt-get install ruby2.5
+          sudo apt-get build-dep ruby2.5
+
       - name: Checkout ruby/ruby
         run: |
           git clone --depth=1 https://github.com/ruby/ruby .
